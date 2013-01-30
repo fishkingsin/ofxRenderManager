@@ -1,7 +1,7 @@
 
 
 #include "ofxRenderManager.h"
-
+#define TAG "ofxRenderManager"
 //---------------------------------------------------------------------------
 ofxRenderManager::ofxRenderManager()
 {
@@ -25,7 +25,7 @@ void ofxRenderManager::allocateForNScreens(int numScreens, int renderWidth, int 
 {
     if ( numScreens < 1)
     {
-        ofLog(OF_LOG_VERBOSE,"ofxRenderManager::allocateForNScreens - you need at lease one screen!\n");
+        ofLog(OF_LOG_VERBOSE,"allocateForNScreens - you need at lease one screen!\n");
         return;
     }
     width   = renderWidth;
@@ -74,13 +74,13 @@ void ofxRenderManager::allocateForNScreens(int numScreens, int renderWidth, int 
 
         ofLog(OF_LOG_VERBOSE,"input is \n");
         ofLog(OF_LOG_VERBOSE,"(%f %f)          ", inputPositions[i][0].x, inputPositions[i][0].y);
-        ofLog(OF_LOG_VERBOSE,"(%f %f)\n\n\n\n\n", inputPositions[i][1].x, inputPositions[i][1].y);
+        ofLog(OF_LOG_VERBOSE,"(%f %f)\n", inputPositions[i][1].x, inputPositions[i][1].y);
         ofLog(OF_LOG_VERBOSE,"(%f %f)          ", inputPositions[i][2].x, inputPositions[i][2].y);
         ofLog(OF_LOG_VERBOSE,"(%f %f)\n", inputPositions[i][3].x, inputPositions[i][3].y);
 
         ofLog(OF_LOG_VERBOSE,"\noutput is \n");
         ofLog(OF_LOG_VERBOSE,"(%f %f)          ", outputPositions[i][0].x, outputPositions[i][0].y);
-        ofLog(OF_LOG_VERBOSE,"(%f %f)\n\n\n\n\n", inputPositions[i][1].x, outputPositions[i][1].y);
+        ofLog(OF_LOG_VERBOSE,"(%f %f)\n", inputPositions[i][1].x, outputPositions[i][1].y);
         ofLog(OF_LOG_VERBOSE,"(%f %f)          ", outputPositions[i][2].x, outputPositions[i][2].y);
         ofLog(OF_LOG_VERBOSE,"(%f %f)\n", outputPositions[i][3].x, outputPositions[i][3].y);
     }
@@ -111,9 +111,11 @@ void ofxRenderManager::drawInputDiagnostically(ofRectangle rect)
 void ofxRenderManager::drawInputDiagnostically(float x, float y, float w, float h)
 {
     if ( nScreens <= 0 ) return;
-
+	ofEnableAlphaBlending();
+	ofPushStyle();
+	ofSetColor(255, 255, 255,150);
     myOffscreenTexture.draw(x, y, w,h);
-
+	ofPopStyle();
     for (int i = 0; i < nScreens; i++)
     {
         ofSetHexColor(0x33DD44);
@@ -156,12 +158,14 @@ void ofxRenderManager::drawOutputDiagnostically(float x, float y, float w, float
 
         glPushMatrix();
 
-        ofSetColor(255, 255, 255, 255);
+		ofPushStyle();
+		ofSetColor(255, 255, 255,150);
+		ofEnableAlphaBlending();
         float wScale = ( w / screenWidth ) / nScreens;
         float hScale = h / screenHeight;
         glScalef(wScale, hScale, 1);
         drawScreen(i);
-
+		ofPopStyle();
         ofSetHexColor(0x4444CC);
         ofNoFill();
         ofBeginShape();

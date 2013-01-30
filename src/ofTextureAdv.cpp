@@ -11,10 +11,12 @@ ofTextureAdv::ofTextureAdv()
 	bDebug  =false;
 	//vbo.setVertexData(coor,GRID_X * GRID_Y,GL_STREAM_DRAW);
 	//vbo.setTexCoordData(grid,GRID_X * GRID_Y,GL_STREAM_DRAW);
+	#ifdef USE_SHADER
 	shader.setGeometryInputType(GL_LINES);
 	shader.setGeometryOutputType(GL_QUADS);
 	shader.setGeometryOutputCount(4);	
-	shader.load("shaders/shader.vert","shaders/shader.frag");//,"shader.geom"); 
+	shader.load("shaders/shader.vert","shaders/shader.frag");//,"shader.geom");
+#endif
 }
 
 
@@ -124,9 +126,10 @@ void ofTextureAdv::draw()
 
     int gridSizeX = GRID_X;
     int gridSizeY = GRID_Y;
-	
+	#ifdef USE_SHADER
 	shader.begin();
 	shader.setUniformTexture("tex", getTextureReference(),0);
+#endif
 	getTextureReference().bind();
 	//vbo.draw(GL_QUADS, 0,GRID_X*GRID_Y);
     //glEnable(getTextureReference().texData.textureTarget);
@@ -161,12 +164,14 @@ void ofTextureAdv::draw()
         }
     }
 	getTextureReference().unbind();
+	#ifdef USE_SHADER
 	shader.end();
+#endif
 	if (bDebug)
     {
         ofPushStyle();
         ofNoFill();
-        glColor3f(1,1,1);
+        ofSetColor(0,255,255);
         for (int y = 0; y < gridSizeY-1; y++)
         {
             for (int x = 0; x < gridSizeX-1; x++)
@@ -213,8 +218,10 @@ void ofTextureAdv::draw(ofVec2f *offGrid , int selectIndex)
 
     int gridSizeX = GRID_X;
     int gridSizeY = GRID_Y;
+	#ifdef USE_SHADER
 	shader.begin();
 	shader.setUniformTexture("tex", getTextureReference(),0);
+#endif
 	getTextureReference().bind();
     for (int y = 0; y < gridSizeY-1; y++)
     {
@@ -245,12 +252,14 @@ void ofTextureAdv::draw(ofVec2f *offGrid , int selectIndex)
         }
     }
 	getTextureReference().unbind();
+	#ifdef USE_SHADER
 	shader.end();
+#endif
     if (bDebug)
     {
         ofPushStyle();
         ofNoFill();
-        glColor3f(1,1,1);
+        ofSetColor(0,255,255);
         for (int y = 0; y < gridSizeY-1; y++)
         {
             for (int x = 0; x < gridSizeX-1; x++)

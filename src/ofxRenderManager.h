@@ -35,6 +35,11 @@ class ofxRenderManager {
 		virtual void loadFromXml(string xmlFileName);
 		virtual void saveToXml();
         virtual void saveToXml(string xmlFileName);
+	
+	void toggleDebug()
+	{
+		myOffscreenTexture.toggleDebug();
+	}
 
 
         int    activeScreenIn;

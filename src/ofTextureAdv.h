@@ -4,10 +4,9 @@
 #include "ofMain.h"
 //render for of 007
 
-#define GRID_X 32
-#define GRID_Y 32
-
-
+#define GRID_X 8
+#define GRID_Y 8
+//#define USE_SHADER
 
 class ofTextureAdv : public ofFbo
 {
@@ -52,8 +51,9 @@ protected:
     ofVec2f * grid;
     ofVec2f * coor;
 	//ofVbo vbo;
+#ifdef USE_SHADER
 	ofShader shader;
-
+#endif
 };
 
 #endif
