@@ -28,6 +28,8 @@ class ofxRenderManager {
 
         bool mouseSelectOutputPoint(ofRectangle drawRect, ofVec2f mousePoint, float clickRadius = 15);
         bool mouseDragOutputPoint(ofRectangle drawRect, ofVec2f mousePoint);
+		bool keyPressedInputPoint(int key);
+		bool keyPressedOutputPoint(int key);
 
         virtual void resetCoordinates();
 
@@ -62,6 +64,7 @@ class ofxRenderManager {
         ofTextureAdv myOffscreenTexture;
         ofxXmlSettings xml;
 		ofxDraggable **draggable;
+	bool *ENABLE_SCREEN;
 
 };
 
