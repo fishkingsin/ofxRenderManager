@@ -137,7 +137,7 @@ void ofxRenderManager::drawInputDiagnostically(float x, float y, float w, float 
 			for (int j = 0; j < 4; j++)
 			{
 				
-				ofCircle(  inputPositions[i][j].x * w + x, inputPositions[i][j].y * h + y,3);
+				ofCircle(  inputPositions[i][j].x * w + x, inputPositions[i][j].y * h + y,5);
 			}
 			if(activeScreenIn>=0)
 			{
@@ -202,7 +202,7 @@ void ofxRenderManager::drawOutputDiagnostically(float x, float y, float w, float
 			else ofSetHexColor(0xAAAAAA);
 			for (int j = 0; j < 4; j++)
 			{
-				ofCircle(  outputPositions[i][j].x , outputPositions[i][j].y, 5 );
+				ofCircle(  outputPositions[i][j].x , outputPositions[i][j].y, 5*(1/hScale) );
 			}
 			
 			if(activeScreenOut>=0)
