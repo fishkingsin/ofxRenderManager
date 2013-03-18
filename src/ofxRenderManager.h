@@ -65,6 +65,7 @@ class ofxRenderManager {
         ofxXmlSettings xml;
 		ofxDraggable **draggable;
 	bool *ENABLE_SCREEN;
+	bool *CONTROL_SCREEN;
 
 };
 

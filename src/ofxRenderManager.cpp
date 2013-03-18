@@ -31,6 +31,7 @@ void ofxRenderManager::allocateForNScreens(int numScreens, int renderWidth, int 
     width   = renderWidth;
     height  = renderHeight;
 	ENABLE_SCREEN = new bool[numScreens];
+	CONTROL_SCREEN = new bool[numScreens];
     screenWidth  = (float)width / (float)numScreens;
     screenHeight = height;
 	
@@ -131,6 +132,8 @@ void ofxRenderManager::drawInputDiagnostically(float x, float y, float w, float 
 			
 			ofFill();
 			ofSetHexColor(0x3344FF);
+			if(CONTROL_SCREEN[i])ofSetHexColor(0x3344FF);
+			else ofSetHexColor(0xAAAAAA);
 			for (int j = 0; j < 4; j++)
 			{
 				
@@ -195,11 +198,13 @@ void ofxRenderManager::drawOutputDiagnostically(float x, float y, float w, float
 			ofEndShape(true);
 			
 			ofFill();
-			ofSetHexColor(0xFF3333);
+			if(CONTROL_SCREEN[i])ofSetHexColor(0xFF3333);
+			else ofSetHexColor(0xAAAAAA);
 			for (int j = 0; j < 4; j++)
 			{
 				ofCircle(  outputPositions[i][j].x , outputPositions[i][j].y, 5 );
 			}
+			
 			if(activeScreenOut>=0)
 			{
 				
@@ -435,7 +440,7 @@ bool ofxRenderManager::mouseSelectInputPoint(ofRectangle drawRect, ofVec2f mouse
 	
     for (int i = 0; i < nScreens; i++)
     {
-		if(ENABLE_SCREEN[i])
+		if(ENABLE_SCREEN[i] && CONTROL_SCREEN[i])
 		{
 			for (int j = 0; j < 4; j++)
 			{
@@ -468,7 +473,7 @@ bool ofxRenderManager::mouseDragInputPoint(ofRectangle drawRect, ofVec2f mousePo
     if (activeScreenIn > -1 && activePointIn > -1)
     {
 		
-		if(ENABLE_SCREEN[activeScreenIn])
+		if(ENABLE_SCREEN[activeScreenIn] && CONTROL_SCREEN[activeScreenIn])
 		{
 			
 			float xpct = (mousePoint.x - drawRect.x) / drawRect.width;
@@ -501,7 +506,7 @@ bool ofxRenderManager::mouseSelectOutputPoint(ofRectangle drawRect, ofVec2f mous
 	
     for (int i = 0; i < nScreens; i++)
     {
-		if(ENABLE_SCREEN[i])
+		if(ENABLE_SCREEN[i] && CONTROL_SCREEN[i])
 		{
 			for (int j = 0; j < 4; j++)
 			{
@@ -555,7 +560,7 @@ bool ofxRenderManager::mouseDragOutputPoint(ofRectangle drawRect, ofVec2f mouseP
 		
         float outPtX = xpct * screenWidth;
         float outPtY = ypct * screenHeight;
-		if(ENABLE_SCREEN[activeScreenOut])
+		if(ENABLE_SCREEN[activeScreenOut] && CONTROL_SCREEN[activeScreenOut])
 		{
 			outputPositions[activeScreenOut][activePointOut].x = outPtX;
 			outputPositions[activeScreenOut][activePointOut].y = outPtY;
@@ -575,7 +580,7 @@ bool ofxRenderManager::keyPressedInputPoint(int key)
 	
     if (activeScreenIn > -1 && activePointIn > -1)
     {
-		if(ENABLE_SCREEN[activeScreenIn])
+		if(ENABLE_SCREEN[activeScreenIn] && CONTROL_SCREEN[activeScreenIn])
 		{
 			float diffX = 0;
 			float diffY = 0;
@@ -611,7 +616,7 @@ bool ofxRenderManager::keyPressedOutputPoint(int key)
     if (activeScreenOut > -1 && activePointOut > -1)
     {
 		
-        if(ENABLE_SCREEN[activeScreenOut])
+        if(ENABLE_SCREEN[activeScreenOut] && CONTROL_SCREEN[activeScreenOut])
 		{
 			float diffX = 0;
 			float diffY = 0;
