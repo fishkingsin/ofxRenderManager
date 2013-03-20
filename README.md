@@ -24,6 +24,7 @@ Installation
 
 Dependencies
 ------------
+ofxDraggable
 
 Compatibility
 ------------
