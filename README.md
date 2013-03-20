@@ -25,6 +25,7 @@ Installation
 Dependencies
 ------------
 ofxDraggable
+ofxXmlSettings
 
 Compatibility
 ------------
