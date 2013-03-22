@@ -1,0 +1,4 @@
+ofxXmlSettings
+ofxRenderManager
+ofxDraggable
+ofxMSAInteractiveObject

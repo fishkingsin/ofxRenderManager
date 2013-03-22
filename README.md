@@ -24,8 +24,10 @@ Installation
 
 Dependencies
 ------------
-ofxDraggable
 ofxXmlSettings
+ofxRenderManager
+ofxDraggable
+ofxMSAInteractiveObject
 
 Compatibility
 ------------

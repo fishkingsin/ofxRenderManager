@@ -46,7 +46,8 @@ void ofxRenderManager::allocateForNScreens(int numScreens, int renderWidth, int 
     float inner_d_3 = 1.0f / (float)nScreens;
     for (int i = 0; i < nScreens; i++)
     {
-		
+		ENABLE_SCREEN[i] = true;
+        CONTROL_SCREEN[i] = true;
         inputPositions[i]  = new ofVec2f[4];
         outputPositions[i] = new ofVec2f[4];
 		draggable[i] = new ofxDraggable[8];
