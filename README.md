@@ -1,6 +1,6 @@
 ofxRenderManager
 ================
-[![ScreenShot](http://imgur.com/BYmLrd8)]
+[![ScreenShot](http://i.imgur.com/BYmLrd8.png)]
 Introduction
 ------------
 
