@@ -1,6 +1,6 @@
 ofxRenderManager
 ================
-[![ScreenShot](http://raw.github.com/fishkingsin/ofxRenderManager/master/ScreenShot.png)]()
+[![ScreenShot](http://imgur.com/BYmLrd8)]
 Introduction
 ------------
 
