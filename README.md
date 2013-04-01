@@ -24,10 +24,11 @@ Installation
 
 Dependencies
 ------------
+
 ofxXmlSettings
-ofxRenderManager
-ofxDraggable
-ofxMSAInteractiveObject
+
+git clone http://www.github.com/fishkingsin/ofxDraggable
+git clone http://www.github.com/memo/ofxMSAInteractiveObject
 
 Compatibility
 ------------
